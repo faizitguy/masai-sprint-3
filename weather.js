@@ -7,8 +7,9 @@ const temp = document.getElementById('temp')
 const temp_desc = document.getElementById("temp-desc")
 const location_name = document.getElementById("location")
 const icon = document.getElementById("icon")
-
-
+const video = document.getElementById("myVideo")
+// const video_source = document.getElementById("video-source")
+// console.log(video_source)
 
 const key  = "c58c1e31f6476f3701405697e091828b"
 
@@ -31,9 +32,9 @@ function getData() {
     xhr.send()
     xhr.onload = function() {
         var response = JSON.parse(xhr.response)
-        console.log(response.weather[0].description)
-        console.log(response.name)
-        console.log(response.sys.country)
+        // console.log(response.weather[0].description)
+        // console.log(response.name)
+        // console.log(response.sys.country)
         appendData(response)
         
         
@@ -53,7 +54,23 @@ function appendData(data) {
     temp_desc.innerHTML = desc
     location_name.innerHTML = location + "," + country
     icon.innerHTML = `<img src="icons/${icon_id}.png"/>`;
+
+    console.log(icon_id)
+    var num = Number(icon_id[0] + icon_id[1])
+    console.log(num)
+
+    if(num >= 9) {
+        video.src = "raindrops.mp4"
+        console.log(video)
+        console.log(video.src)
+    } else if(num > 0 && num <9) {
+        video.src = "clouds.mp4"
+        console.log(video)
+        console.log(video.src)
+    }
     document.querySelector("form").reset()
+ 
+    
 }
 
 
